@@ -1,0 +1,28 @@
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<iterator>
+using namespace std;
+
+int main(){
+	stack<char>brackets;
+	string s;
+	cin>>s;
+	for(auto ch=s.begin();ch<s.end();++ch){
+		if(*ch==')'){
+			char top=brackets.top();
+			brackets.pop();
+			int counter=0;
+			while(top!='('){
+				++counter;
+				top=brackets.top();
+				brackets.pop();
+			}
+			if(counter==0){
+				cout<<"Duplicated Parathesis at "<<ch-s.begin();
+				exit(0);
+			}
+		} else brackets.push(*ch);
+	}
+	cout<<"Balanced";
+}
